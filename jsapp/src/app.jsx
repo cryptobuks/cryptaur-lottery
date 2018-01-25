@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import React from 'react';
 import { render } from 'react-dom';
+import 'web3';
 import { injectGlobal } from 'styled-components';
 import App from './Containers/App';
 

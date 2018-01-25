@@ -2,6 +2,8 @@ const express = require('express');
 const compression = require('compression');
 const colors = require('colors');
 
+const port = 3003;
+
 (async function () {
     const app = new (require('express'))();
     app.use(compression());
@@ -35,11 +37,11 @@ const colors = require('colors');
         res.sendFile(`${__dirname}/index.html`);
     });
 
-    app.listen(3003, (error) => {
+    app.listen(port, (error) => {
         if (error) {
             console.error(error);
         } else {
-            console.info('Running on port %s.', 3000);
+            console.info('Running on port %s.', port);
         }
     });
 }());
