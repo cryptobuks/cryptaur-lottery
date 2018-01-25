@@ -16,26 +16,8 @@ const Container = s.span`
     user-select: none;
 `;
 
-export default class Number extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selected: false
-        };
-    }
+const Number = ({ value, selected, ...props }) => (
+    <Container selected={selected} {...props}>{value}</Container>
+);
 
-    onSelect = () => {
-        if (!this.props.disabled || this.state.selected) {
-            this.setState({
-                selected: !this.state.selected
-            }, () => this.props.onClick(this.props.value));
-        }
-    };
-
-    render() {
-        const { value } = this.props;
-        return (
-            <Container onClick={this.onSelect} selected={this.state.selected}>{value}</Container>
-        );
-    }
-}
+export default Number;
