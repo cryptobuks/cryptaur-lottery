@@ -1,7 +1,7 @@
 import React from 'react';
 import s from 'styled-components';
 import * as balls from '../Resources/balls';
-import { Progress, Tickets, Archive } from './index';
+import { Progress, Tickets, Archive, HowToPlay } from './index';
 
 const Container = s.div`
     margin-top: 100px;
@@ -106,6 +106,7 @@ export default class Jackpot extends React.Component {
                 <React.Fragment>
                     <Tickets total={total} numbers={numbers} />
                     <Archive />
+                    <HowToPlay />
                 </React.Fragment>
                 }
             </Container>

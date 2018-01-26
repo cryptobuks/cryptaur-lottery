@@ -7,5 +7,9 @@ import Progress from './Progress';
 import Button from './Button';
 import Ticket from './Ticket';
 import Archive from './Archive';
+import HowToPlay from './HowToPlay';
 
-export { Header, Footer, PrizePool, Jackpot, Tickets, Ticket, Progress, Button, Archive };
+export {
+    Header, Footer, PrizePool, Jackpot, Tickets,
+    Ticket, Progress, Button, Archive, HowToPlay
+};
