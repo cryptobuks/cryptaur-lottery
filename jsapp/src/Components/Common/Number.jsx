@@ -5,10 +5,10 @@ const Container = s.span`
     font-size: 18px;
     color: ${props => props.selected ? '#fff' : '#634285'};
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
     text-align: center;
-    background: ${props => props.selected && 'linear-gradient(-45deg, #f962ff, #3fbdff)'};
+    background: ${props => props.selected && (props.simple ? '#4f3a73' : 'linear-gradient(-45deg, #f962ff, #3fbdff)')};
     border-radius: 50%;
     padding-top: 11px;
     margin-right: 12px;
@@ -16,8 +16,8 @@ const Container = s.span`
     user-select: none;
 `;
 
-const Number = ({ value, selected, ...props }) => (
-    <Container selected={selected} {...props}>{value}</Container>
+const Number = ({ value, ...props }) => (
+    <Container {...props}>{value}</Container>
 );
 
 export default Number;

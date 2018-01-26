@@ -9,6 +9,7 @@ const Container = s.div`
     align-items: center;
     color: #fff;
     margin-top: 80px;
+    margin-bottom: 60px;
     > * {
         margin-top: 0;
     }

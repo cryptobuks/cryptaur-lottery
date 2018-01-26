@@ -11,6 +11,7 @@ const Container = s.div`
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    margin-top: 200px;
 `;
 
 const Text = s.p`

@@ -1,7 +1,7 @@
 import React from 'react';
 import s from 'styled-components';
 import * as balls from '../Resources/balls';
-import { Progress, Tickets } from './index';
+import { Progress, Tickets, Archive } from './index';
 
 const Container = s.div`
     margin-top: 100px;
@@ -75,20 +75,41 @@ const Buy = s.div`
     cursor: pointer;
 `;
 
-const Jackpot = ({ usd, cpt, total, numbers }) => (
-    <Container>
-        <Balls balls={balls[`ball${numbers}${total}`]} />
-        <InfoContainer>
-            <Title>Jackpot</Title>
-            <CptPrice>{`${cpt} CPT`}</CptPrice>
-            <UsdPrice>{`${usd} USD`}</UsdPrice>
-        </InfoContainer>
-        <TimerContainer>
-            <Timeout>time left 08:51:53</Timeout>
-            <Progress value={50} maxValue={100} />
-        </TimerContainer>
-        <Buy>buy ticket 0.003 CPT</Buy>
-        <Tickets total={total} numbers={numbers} />
-    </Container>);
+export default class Jackpot extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            expanded: false
+        };
+    }
 
-export default Jackpot;
+    expand = () => this.setState({ expanded: !this.state.expanded });
+
+    render() {
+        const {
+            usd, cpt, total, numbers
+        } = this.props;
+        return (
+            <Container>
+                <Balls balls={balls[`ball${numbers}${total}`]} />
+                <InfoContainer>
+                    <Title>Jackpot</Title>
+                    <CptPrice>{`${cpt} CPT`}</CptPrice>
+                    <UsdPrice>{`${usd} USD`}</UsdPrice>
+                </InfoContainer>
+                <TimerContainer>
+                    <Timeout>time left 08:51:53</Timeout>
+                    <Progress value={50} maxValue={100} />
+                </TimerContainer>
+                <Buy onClick={this.expand}>buy ticket 0.003 CPT</Buy>
+                {this.state.expanded &&
+                <React.Fragment>
+                    <Tickets total={total} numbers={numbers} />
+                    <Archive />
+                </React.Fragment>
+                }
+            </Container>
+        );
+    }
+}
+

@@ -8,13 +8,13 @@ import App from './Containers/App';
 injectGlobal`
     html, body {
         margin: 0;
-        font-family: 'Open Sans', sans-serif;
         height: 100%;
     }
     
     * {
         box-sizing: border-box;
         line-height: 1;
+        font-family: 'Open Sans', sans-serif;
     }
     
     #root {

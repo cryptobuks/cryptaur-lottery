@@ -1,12 +1,17 @@
 import React from 'react';
 import s from 'styled-components';
-import Number from './Number';
+import { Number } from './Common';
 
 const Container = s.div`
+ padding: 0 80px;
+`;
+
+const Numbers = s.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 60px;
 `;
 
 const Info = s.div`
@@ -17,6 +22,10 @@ const Info = s.div`
     text-transform: uppercase;
     font-size: 12px;
     color: #ac99c2;
+    margin-bottom: 40px;
+    * {
+        margin: 0;
+    }
 `;
 
 const ClearSection = s.p`
@@ -54,21 +63,21 @@ export default class Ticket extends React.Component {
         const { total, numbers, id } = this.props;
         const { selected } = this.state;
         return (
-            <React.Fragment>
+            <Container>
                 <Info>
                     <p>Select {numbers} numbers</p>
                     <p>Ticket №{id}</p>
                     <ClearSection onClick={this.clearTicket}>Clear Section</ClearSection>
                 </Info>
-                <Container>
+                <Numbers>
                     {[...Array(total)].map((x, i) =>
                         (<Number
                             value={i + 1}
                             onClick={() => this.selectBall(i + 1)}
                             selected={selected.includes(i + 1)}
                         />))}
-                </Container>
-            </React.Fragment>
+                </Numbers>
+            </Container>
         );
     }
 }
