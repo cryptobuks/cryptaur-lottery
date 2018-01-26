@@ -1,4 +1,4 @@
-﻿namespace LottoWebServiceNetCore
+﻿namespace LottoWebServiceNetCore.Background
 {
     public class PeriodicServiceSettings
     {

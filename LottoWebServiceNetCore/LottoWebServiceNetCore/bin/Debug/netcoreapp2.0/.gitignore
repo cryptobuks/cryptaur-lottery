@@ -3,3 +3,4 @@
 /LottoWebServiceNetCore.pdb
 /LottoWebServiceNetCore.runtimeconfig.dev.json
 /LottoWebServiceNetCore.runtimeconfig.json
+*.config

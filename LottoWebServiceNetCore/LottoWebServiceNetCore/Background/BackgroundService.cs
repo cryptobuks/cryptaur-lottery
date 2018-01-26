@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 
-namespace LottoWebServiceNetCore
+namespace LottoWebServiceNetCore.Background
 {
     /// <summary>
     /// Base class for implementing a long running <see cref="IHostedService"/>.
