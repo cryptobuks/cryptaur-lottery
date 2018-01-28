@@ -1,7 +1,9 @@
 import React from 'react';
 import s from 'styled-components';
 import { observer, inject } from 'mobx-react';
+import { Input } from './Common';
 import userIcon from '../Resources/user.png';
+import arrowRight from '../Resources/arrowRight.png';
 
 const Container = s.div`
     position: fixed;
@@ -35,16 +37,32 @@ const Right = s.div`
 
 const Left = s.div`
     display: flex;
+    align-items: center;
+    position: relative;
+`;
+
+const User = s.img`
+    margin-right: 20px;
+`;
+
+const Login = s.img`
+    position: absolute;
+    width: 17px;
+    height: 11px;
+    right: 22px;
+    cursor: pointer;
 `;
 
 const Header = ({ demoStore }) => (
     <Container>
         <Left>
-            <img src={userIcon} />
+            <User src={userIcon} />
+            <Input placeholder="login with your CPT wallet address" />
+            <Login src={arrowRight} />
         </Left>
         <Right>
             <Link href="http://google.ru">My Tickets</Link>
-            <Link href="http://google.ru">How To Play</Link>
+            <Link href="/manual">How To Play</Link>
             <Link href="http://google.ru">Eng</Link>
         </Right>
     </Container>

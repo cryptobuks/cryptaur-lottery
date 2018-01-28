@@ -10,6 +10,7 @@ const Container = s.div`
     position: relative;
     max-width: 960px;
     width: 100%;
+    box-shadow: 0 25px 55px 0 rgba(57, 22, 102, 0.35);
 `;
 
 const Title = s.p`
@@ -39,7 +40,7 @@ const Balls = s.div`
     background: url(${props => props.balls}) no-repeat;
     width: 340px;
     height: 250px;
-    right: -54px;
+    right: -50px;
     top: -54px;
 `;
 
@@ -106,7 +107,7 @@ export default class Jackpot extends React.Component {
                 <React.Fragment>
                     <Tickets total={total} numbers={numbers} />
                     <Archive />
-                    <HowToPlay />
+                    <HowToPlay total={total} numbers={numbers} />
                 </React.Fragment>
                 }
             </Container>

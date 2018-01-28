@@ -1,6 +1,7 @@
 import React from 'react';
 import s from 'styled-components';
 import { Number } from './Common';
+import HistoryModal from '../Containers/HistoryModal';
 
 const Item = s.div`
     display: flex;
@@ -8,6 +9,7 @@ const Item = s.div`
     align-items: center;
     width: 100%;
     padding: 30px 80px;
+    cursor: pointer;
     border-bottom: 1px solid #473d5a;
     &:first-of-type {
         padding-top: 0;
@@ -35,17 +37,28 @@ const Info = s.div`
     }
 `;
 
-const ArchiveItem = ({ numbers }) => (
-    <Item>
-        <Info>
-            <p>2018.01.22 11:00</p>
-            <p>#31</p>
-            <p>Jackpot <strong>45.0041 CPT</strong></p>
-        </Info>
-        <Numbers>
-            {numbers.map(i => <Number value={i} selected simple />)}
-        </Numbers>
-    </Item>
-);
+export default class ArchiveItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { modalOpened: false };
+    }
 
-export default ArchiveItem;
+    openModal = () => this.setState({ modalOpened: true });
+
+    render() {
+        const { numbers } = this.props;
+        return (
+            <Item onClick={this.openModal}>
+                <Info>
+                    <p>2018.01.22 11:00</p>
+                    <p>#31</p>
+                    <p>Jackpot <strong>45.0041 CPT</strong></p>
+                </Info>
+                <Numbers>
+                    {numbers.map(i => <Number value={i} selected simple />)}
+                </Numbers>
+                <HistoryModal isOpen={this.state.modalOpened} />
+            </Item>
+        );
+    }
+}

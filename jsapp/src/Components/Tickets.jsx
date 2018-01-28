@@ -19,6 +19,7 @@ const AddTicket = s.p`
     font-weight: 300;
     margin: 0;
     line-height: 60px;
+    user-select: none;
     &:before {
         float: left;
         background-image: url(${addIcon});
