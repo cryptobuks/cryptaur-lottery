@@ -38,7 +38,7 @@ const Balls = s.div`
     position: absolute;
     background: url(${props => props.balls}) no-repeat;
     width: 340px;
-    height: 250px;
+    height: 270px;
     right: -50px;
     top: -54px;
 `;
