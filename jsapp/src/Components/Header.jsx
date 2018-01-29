@@ -1,9 +1,11 @@
 import React from 'react';
 import s from 'styled-components';
 import { observer, inject } from 'mobx-react';
+import { NavLink, withRouter } from 'react-router-dom';
 import { Input } from './Common';
 import userIcon from '../Resources/user.png';
 import arrowRight from '../Resources/arrowRight.png';
+
 
 const Container = s.div`
     position: fixed;
@@ -22,23 +24,29 @@ const Container = s.div`
     z-index: 1;
 `;
 
-const Link = s.a`
-    color: #fff;
-    text-decoration: none;
-    margin-right: 40px;
-    &:last-child {
-        margin-right: 0;
-    }
-`;
-
 const Right = s.div`
     display: flex;
+    a {
+        color: #fff;
+    text-decoration: none;
+    margin-right: 40px;
+    user-select: none;
+    &:last-child {
+        margin-right: 0;
+        }
+    }
 `;
 
 const Left = s.div`
     display: flex;
     align-items: center;
     position: relative;
+      a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 40px;
+    user-select: none;
+    }
 `;
 
 const User = s.img`
@@ -53,19 +61,40 @@ const Login = s.img`
     cursor: pointer;
 `;
 
-const Header = ({ demoStore }) => (
-    <Container>
-        <Left>
-            <User src={userIcon} />
-            <Input placeholder="login with your CPT wallet address" />
-            <Login src={arrowRight} />
-        </Left>
-        <Right>
-            <Link href="http://google.ru">My Tickets</Link>
-            <Link href="/manual">How To Play</Link>
-            <Link href="http://google.ru">Eng</Link>
-        </Right>
-    </Container>
-);
+const Wallet = s.p`
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #fff;
+`;
 
-export default inject('demoStore')(observer(Header));
+class Header extends React.Component {
+    setWallet = () => {
+        this.props.userStore.setWallet(this.wallet.value);
+    }
+
+    render() {
+        const { userStore } = this.props;
+        return (
+            <Container>
+                <Left>
+                    <NavLink to="/" activeStyle={{ color: '#55b9ff' }} exact>Home</NavLink>
+                    <User src={userIcon} />
+                    {userStore.walletId ?
+                        <Wallet>{userStore.walletId}</Wallet> :
+                        <Input placeholder="login with your CPT wallet address" innerRef={e => this.wallet = e} />
+                    }
+                    <Login src={arrowRight} onClick={this.setWallet} />
+                </Left>
+                <Right>
+                    {userStore.walletId &&
+                    <NavLink to="/tickets" activeStyle={{ color: '#55b9ff' }} exact>My Tickets</NavLink>
+                    }
+                    <NavLink to="/manual" activeStyle={{ color: '#55b9ff' }} exact>How To Play</NavLink>
+                    <NavLink to="http://google.ru">Eng</NavLink>
+                </Right>
+            </Container>
+        );
+    }
+}
+
+export default withRouter(inject('userStore')(observer(Header)));

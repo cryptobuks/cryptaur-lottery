@@ -7,6 +7,7 @@ import Test from './Test';
 import Manual from './Manual';
 import stores from '../Stores';
 import { Header, Footer } from '../Components';
+import MyTickets from './MyTickets';
 
 const Container = s.div`
     background: linear-gradient(to bottom, #3da3f7, #9917ff);
@@ -17,13 +18,16 @@ const Container = s.div`
 const App = () => (
     <Provider {...stores}>
         <Container>
-            <Header />
             <Router>
-                <Switch>
-                    <Route path="/test" component={Test} />
-                    <Route path="/manual" component={Manual} />
-                    <Route path="/" component={Home} />
-                </Switch>
+                <React.Fragment>
+                    <Header />
+                    <Switch>
+                        <Route path="/test" component={Test} />
+                        <Route path="/manual" component={Manual} />
+                        <Route path="/tickets" component={MyTickets} />
+                        <Route path="/" component={Home} />
+                    </Switch>
+                </React.Fragment>
             </Router>
             <Footer />
         </Container>

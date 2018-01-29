@@ -17,7 +17,7 @@ const Numbers = s.div`
 const Info = s.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: ${props => props.readonly ? 'space-around' : 'space-between'};
     width: 100%;
     text-transform: uppercase;
     font-size: 12px;
@@ -37,13 +37,11 @@ export default class Ticket extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: []
+            selected: props.selected || []
         };
     }
 
     selectBall = (n) => {
-        console.log(n);
-
         let selected = [...this.state.selected];
 
         if (selected.includes(n)) {
@@ -60,20 +58,21 @@ export default class Ticket extends React.Component {
     }
 
     render() {
-        const { total, numbers, id } = this.props;
+        const { total, numbers, id, readonly } = this.props;
         const { selected } = this.state;
         return (
             <Container>
-                <Info>
-                    <p>Select {numbers} numbers</p>
+                <Info readonly={readonly}>
+                    {!readonly && <p>Select {numbers} numbers</p>}
                     <p>Ticket №{id}</p>
-                    <ClearSection onClick={this.clearTicket}>Clear Section</ClearSection>
+                    {!readonly &&
+                    <ClearSection onClick={this.clearTicket}>Clear Section</ClearSection>}
                 </Info>
                 <Numbers>
                     {[...Array(total)].map((x, i) =>
                         (<Number
                             value={i + 1}
-                            onClick={() => this.selectBall(i + 1)}
+                            onClick={() => !readonly && this.selectBall(i + 1)}
                             selected={selected.includes(i + 1)}
                         />))}
                 </Numbers>

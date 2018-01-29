@@ -8,8 +8,9 @@ import Button from './Button';
 import Ticket from './Ticket';
 import Archive from './Archive';
 import HowToPlay from './HowToPlay';
+import MyTicket from './MyTicket';
 
 export {
     Header, Footer, PrizePool, Jackpot, Tickets,
-    Ticket, Progress, Button, Archive, HowToPlay
+    Ticket, Progress, Button, Archive, HowToPlay, MyTicket
 };
