@@ -21,7 +21,7 @@ const Container = s.div`
     justify-content: space-between;
     align-items: center;
     padding: 0 40px;
-    z-index: 1;
+    z-index: 2;
 `;
 
 const Right = s.div`

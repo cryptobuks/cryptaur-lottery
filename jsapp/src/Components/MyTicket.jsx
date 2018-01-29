@@ -1,17 +1,8 @@
 import React from 'react';
 import s from 'styled-components';
-import {
-    Container,
-    Title,
-    MainTitle,
-    TimerContainer,
-    InfoContainer,
-    Balls,
-    Timeout
-} from './Common/TicketBase';
-import { Progress, Ticket } from './';
+import { Ticket } from './';
 import { Title as BlockTitle } from './Common';
-import * as balls from '../Resources/balls';
+import TicketContainer from './Common/TicketContainer';
 
 const Tickets = s.div`
     background-color: #f5f0ff;
@@ -22,22 +13,19 @@ const Tickets = s.div`
 `;
 
 const MyTicket = ({ numbers, total }) => (
-    <Container>
-        <Balls balls={balls[`ball${numbers}${total}`]} />
-        <InfoContainer>
-            <Title>You Have</Title>
-            <MainTitle>1 Ticket</MainTitle>
-        </InfoContainer>
-        <TimerContainer>
-            <Timeout>time left 08:51:53</Timeout>
-            <Progress value={50} maxValue={100} />
-        </TimerContainer>
+    <TicketContainer
+        title="You Have"
+        mainTitle="1 Ticket"
+        total={total}
+        numbers={numbers}
+        noExpand
+    >
         <Tickets>
             <BlockTitle>Tickets you bought</BlockTitle>
             <Ticket total={total} numbers={numbers} selected={[1, 3, 5, 7]} readonly />
             <Ticket total={total} numbers={numbers} selected={[1, 3, 5, 7]} readonly />
         </Tickets>
-    </Container>
+    </TicketContainer>
 );
 
 export default MyTicket;
