@@ -22,18 +22,25 @@ const Container = s.div`
     align-items: center;
     padding: 0 40px;
     z-index: 2;
+    @media (max-width: 700px) {
+        height: 60px;
+    }
 `;
 
 const Right = s.div`
     display: flex;
     a {
-        color: #fff;
+    color: #fff;
     text-decoration: none;
     margin-right: 40px;
     user-select: none;
+    white-space: nowrap;
     &:last-child {
         margin-right: 0;
         }
+    }
+    @media (max-width: 700px) {
+        display: none;
     }
 `;
 

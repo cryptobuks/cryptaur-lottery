@@ -13,6 +13,9 @@ const Container = s.div`
     background: linear-gradient(to bottom, #3da3f7, #9917ff);
     margin-top: 100px;
     min-height: 100%;
+        @media (max-width: 700px) {
+        margin-top: 60px;
+    }
 `;
 
 const App = () => (

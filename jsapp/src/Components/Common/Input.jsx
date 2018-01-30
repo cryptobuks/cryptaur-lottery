@@ -8,10 +8,11 @@ const Input = s.input`
     font-size: 12px;
     text-transform: uppercase;
     color: #fff;
-    width: 440px;
+    width: 100%;
     letter-spacing: 0.6px;
     font-weight: 300;
     padding: 0 60px 0 22px;
+    min-width: 330px;
     ::placeholder {
         color: #fff;
     }

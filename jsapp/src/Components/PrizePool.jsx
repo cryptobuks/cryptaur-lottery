@@ -26,12 +26,18 @@ const Title = s.p`
 const CptPrice = s.h2`
     font-size: 36px;
     margin-bottom: 15px;
+    @media (max-width: 500px) {
+        font-size: 28px;
+    }
 `;
 
 const UsdPrice = s.p`
     font-size: 18px;
     opacity: 0.5;
     margin-bottom: 0;
+    @media (max-width: 500px) {
+        font-size: 14px;
+    }
 `;
 
 const Leaf = s.div`

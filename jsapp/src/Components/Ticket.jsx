@@ -4,6 +4,12 @@ import { Number } from './Common';
 
 const Container = s.div`
  padding: 0 80px;
+     @media (max-width: 900px) {
+        padding: 0 40px;
+    }
+    @media (max-width: 500px) {
+        padding: 0 20px;
+    }
 `;
 
 const Numbers = s.div`

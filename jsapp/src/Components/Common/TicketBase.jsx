@@ -6,7 +6,9 @@ const Container = s.div`
     border-radius: 10px;
     position: relative;
     max-width: 960px;
-    width: 100%;
+    width: calc(100% - 80px);
+    margin-left: 40px;
+    margin-right: 40px;
     box-shadow: 0 25px 55px 0 rgba(57, 22, 102, 0.35);
     z-index: 1;
 `;
@@ -25,6 +27,9 @@ const MainTitle = s.h2`
     font-weight: 700;
     margin-bottom: 21px;
     text-transform: uppercase;
+     @media(max-width: 500px) {
+        font-size: 36px;
+  }
 `;
 
 const SecondTitle = s.p`
@@ -32,6 +37,9 @@ const SecondTitle = s.p`
     color: #634285;
     opacity:0.5;
     margin-bottom: 0;
+    @media(max-width: 500px) {
+        font-size: 18px;
+  }
 `;
 
 const Balls = s.div`
@@ -39,8 +47,21 @@ const Balls = s.div`
     background: url(${props => props.balls}) no-repeat;
     width: 340px;
     height: 270px;
-    right: -50px;
+    right: -30px;
     top: -54px;
+    @media(max-width: 900px) {
+        width: 170px;
+        height: 135px;
+        top: -40px;
+        right: -20px;
+        background-size: contain;
+  }
+      @media(max-width: 500px) {
+        top: -80px;
+        right: 0;
+        left: 0;
+        margin: auto;
+  }
 `;
 
 const InfoContainer = s.div`
@@ -48,6 +69,10 @@ const InfoContainer = s.div`
     > * {
         margin-top: 0;
     }
+    @media(max-width: 500px) {
+        padding: 80px 0 0;
+        text-align: center;
+  }
 `;
 
 const TimerContainer = s.div`

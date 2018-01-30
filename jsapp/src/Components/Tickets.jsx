@@ -37,6 +37,9 @@ const Bottom = s.div`
     align-items: center;
     border-top: 1px solid #e4ddf1;
     padding: 40px 80px;
+    @media (max-width: 900px) {
+        padding: 40px;
+    }
 `;
 
 export default class Tickets extends React.Component {
