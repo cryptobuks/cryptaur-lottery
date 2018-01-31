@@ -11,6 +11,9 @@ const Container = s.button`
   font-weight: 300;
   padding: 0 60px;
   cursor: pointer;
+  @media (max-width: 500px) {
+    font-size: 18px;
+  }
 `;
 
 const Button = ({ title }) => (

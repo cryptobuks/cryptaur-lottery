@@ -27,6 +27,19 @@ const AddTicket = s.p`
         height: 60px;
         content: " ";
         margin-right: 20px;
+        @media (max-width: 500px) {
+        width: 40px;
+        height: 40px;
+        background-size: contain;
+    }
+    }
+    @media (max-width: 800px) {
+        margin-bottom: 30px;
+    }
+    @media (max-width: 500px) {
+        margin-bottom: 15px;
+        font-size: 18px;
+        line-height: 40px;
     }
 `;
 
@@ -39,6 +52,19 @@ const Bottom = s.div`
     padding: 40px 80px;
     @media (max-width: 900px) {
         padding: 40px;
+    }
+    @media (max-width: 800px) {
+        flex-direction: column;
+    }
+`;
+
+const TotalPrice = s.p`
+    color: #8941ff;
+    font-size: 18px;
+    font-weight: 300;
+    margin-top: 15px;
+    @media (min-width: 500px) and (max-width: 800px) {
+        margin-top: 30px;
     }
 `;
 
@@ -54,6 +80,8 @@ export default class Tickets extends React.Component {
         this.setState({ tickets: this.state.tickets + 1 });
     }
 
+    isMobile = () => window.matchMedia('(max-width: 600px)').matches;
+
     render() {
         const { tickets } = this.state;
         return (
@@ -62,7 +90,8 @@ export default class Tickets extends React.Component {
                 {[...Array(tickets)].map((x, i) => <Ticket {...this.props} id={i + 1} key={`tkt${i + 1}`} />)}
                 <Bottom>
                     <AddTicket onClick={this.addTicket}>Add Ticket</AddTicket>
-                    <Button title={`Buy ${tickets} tickets for 0.009 CPT`} />
+                    <Button title={this.isMobile() ? `Buy ${tickets} tickets` : `Buy ${tickets} tickets for 0.009 CPT`} />
+                    {this.isMobile() && <TotalPrice>{'0.05 CPT'}</TotalPrice>}
                 </Bottom>
             </Container>
         );

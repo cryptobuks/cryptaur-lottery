@@ -101,6 +101,9 @@ const BgEffect = s.div`
     height: 100%;
     opacity: 0.2;
     border-radius: 10px;
+    @media (max-width: 500px) {
+        width: calc(100% - ${props => props.position * 20}px);
+    }
 `;
 
 const Buy = s.div`

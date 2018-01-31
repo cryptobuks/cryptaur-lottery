@@ -17,17 +17,12 @@ const Expander = s.img`
     top: 90px;
     right: 81px;
     cursor: pointer;
-    transform: ${props => !props.expanded && 'rotate(180deg)'}
+    transform: ${props => !props.expanded && 'rotate(180deg)'};
+    @media (max-width: 500px) {
+        top: 36px;
+        right: 20px;
+    }
     
-`;
-
-const Childs = s.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: ${props => !props.expanded ? '0%' : '100%'};
-    transition: height 0.5s;
 `;
 
 export default class ExpandContainer extends React.Component {

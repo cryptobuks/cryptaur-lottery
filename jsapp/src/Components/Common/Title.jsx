@@ -9,6 +9,11 @@ const Title = s.h1`
     @media (max-width: 500px) {
         font-size: 24px;
         text-align: left;
+         margin-top: 31px;
+        margin-bottom: 39px;
+        text-align: left;
+        padding-left: 20px;
+        width: 100%;
     }
 `;
 

@@ -1,14 +1,6 @@
 import React from 'react';
 import s from 'styled-components';
-import { Title, Number } from './Common';
-
-const Container = s.div`
-    padding: 0 80px;
-    background-color: #21172f;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
+import { ExpandContainer, Number } from './Common';
 
 const Table = s.table`
     width: 100%;
@@ -49,8 +41,7 @@ const Hint = s.p`
 `;
 
 const HowToPlay = ({ numbers, total }) => (
-    <Container>
-        <Title white>The {numbers}x{total} Lottery Rules</Title>
+    <ExpandContainer title={`The ${numbers}${total} Lottery Rules`} bgColor="#21172f">
         <Table>
             <thead>
                 <tr>
@@ -77,7 +68,7 @@ const HowToPlay = ({ numbers, total }) => (
             </tbody>
         </Table>
         <Hint>*70% of the ticket sales for one drawing go to the Prize Pool</Hint>
-    </Container>
+    </ExpandContainer>
 );
 
 export default HowToPlay;
