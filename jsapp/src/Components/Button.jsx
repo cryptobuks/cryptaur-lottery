@@ -13,6 +13,8 @@ const Container = s.button`
   cursor: pointer;
   @media (max-width: 500px) {
     font-size: 18px;
+    padding: 0 20px;
+    width: 100%;
   }
 `;
 

@@ -11,6 +11,10 @@ const Container = s.div`
     margin-right: 40px;
     box-shadow: 0 25px 55px 0 rgba(57, 22, 102, 0.35);
     z-index: 1;
+    @media (max-width: 500px) {
+        margin: 100px 10px 0;
+        width: calc(100% - 20px);
+    }
 `;
 
 const Title = s.p`

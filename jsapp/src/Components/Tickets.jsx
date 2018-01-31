@@ -31,15 +31,25 @@ const AddTicket = s.p`
         width: 40px;
         height: 40px;
         background-size: contain;
+        @media (max-width: 500px) { 
+            float: none;
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: -5px;
+        }
     }
     }
     @media (max-width: 800px) {
         margin-bottom: 30px;
     }
     @media (max-width: 500px) {
-        margin-bottom: 15px;
+        width: 100%;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e4ddf1;
+        margin-bottom: 20px;
         font-size: 18px;
         line-height: 40px;
+        text-align: center;
     }
 `;
 
@@ -55,6 +65,9 @@ const Bottom = s.div`
     }
     @media (max-width: 800px) {
         flex-direction: column;
+    }
+    @media (max-width: 500px) {
+        padding: 20px;
     }
 `;
 

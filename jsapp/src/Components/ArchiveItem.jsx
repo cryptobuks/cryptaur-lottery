@@ -14,10 +14,14 @@ const Item = s.div`
     &:first-of-type {
         padding-top: 0;
     }
+    @media (max-width: 500px) {
+        padding: 30px 20px;
+    }
 `;
 
 const Numbers = s.div`
     display: flex;
+    flex-wrap: wrap;
 `;
 
 const Info = s.div`
@@ -37,6 +41,12 @@ const Info = s.div`
     }
 `;
 
+const Date = s.p`
+    @media (max-width: 500px) {
+        display: none;
+    }
+`;
+
 export default class ArchiveItem extends React.Component {
     constructor(props) {
         super(props);
@@ -50,7 +60,7 @@ export default class ArchiveItem extends React.Component {
         return (
             <Item onClick={this.openModal}>
                 <Info>
-                    <p>2018.01.22 11:00</p>
+                    <Date>2018.01.22 11:00</Date>
                     <p>#31</p>
                     <p>Jackpot <strong>45.0041 CPT</strong></p>
                 </Info>
