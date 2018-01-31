@@ -46,6 +46,9 @@ const Leaf = s.div`
     width: 72px;
     height: 155px;
     right: -72px;
+    @media (max-width: 350px) {
+        display: none;
+    }
 `;
 
 const LeafLeft = s(Leaf)`

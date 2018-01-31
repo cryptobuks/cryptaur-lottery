@@ -2,6 +2,7 @@ import React from 'react';
 import s from 'styled-components';
 import Modal from 'react-modal';
 import { Title } from '../Components/Common';
+import close from '../Resources/close.png';
 
 const style = {
     overlay: {
@@ -84,10 +85,31 @@ const Info = s.div`
     border-bottom: 1px solid #f5f0ff;
 `;
 
+const Close = s.div`
+    background-image: url(${close});
+    width: 22px;
+    height: 22px;
+    float: right;
+    margin-top: 82px;
+    float: right;
+    position: absolute;
+    right: 80px;
+    cursor: pointer;
+`;
 
-const HistoryModal = ({ isOpen }) => (
+const Head = s.div`
+    display: block;
+    > * {
+        display: inline-block;
+    }
+`;
+
+const HistoryModal = ({ isOpen, closeModal }) => (
     <Modal isOpen={isOpen} style={style}>
-        <Title>Winners</Title>
+        <Head>
+            <Title>Winners</Title>
+            <Close onClick={closeModal} />
+        </Head>
         <Results>
             <Col>
                 <Item>
@@ -134,3 +156,4 @@ const HistoryModal = ({ isOpen }) => (
 );
 
 export default HistoryModal;
+

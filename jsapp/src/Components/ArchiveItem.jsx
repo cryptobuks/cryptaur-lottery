@@ -53,12 +53,12 @@ export default class ArchiveItem extends React.Component {
         this.state = { modalOpened: false };
     }
 
-    openModal = () => this.setState({ modalOpened: true });
+    modalState = opened => this.setState({ modalOpened: opened });
 
     render() {
         const { numbers } = this.props;
         return (
-            <Item onClick={this.openModal}>
+            <Item onClick={() => this.modalState(true)}>
                 <Info>
                     <Date>2018.01.22 11:00</Date>
                     <p>#31</p>
@@ -67,7 +67,13 @@ export default class ArchiveItem extends React.Component {
                 <Numbers>
                     {numbers.map(i => <Number value={i} selected simple />)}
                 </Numbers>
-                <HistoryModal isOpen={this.state.modalOpened} />
+                <HistoryModal
+                    isOpen={this.state.modalOpened}
+                    closeModal={(e) => {
+                        e.stopPropagation();
+                        this.modalState(false);
+                    }}
+                />
             </Item>
         );
     }

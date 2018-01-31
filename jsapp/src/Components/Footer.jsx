@@ -4,6 +4,9 @@ import logo from '../Resources/cryptaur.png';
 import fb from '../Resources/facebook.png';
 import tg from '../Resources/telegram.png';
 import tw from '../Resources/twitter.png';
+import fb_lg from '../Resources/facebook_lg.png';
+import tg_lg from '../Resources/telegram_lg.png';
+import tw_lg from '../Resources/twitter_lg.png';
 
 const Container = s.div`
     display: flex;
@@ -74,14 +77,25 @@ const Icons = s.div`
     }
 `;
 
+const SocialLink = s.a`
+    width: 18px;
+    height: 18px;
+    background-image: url(${props => props.icon});
+    @media (max-width: 500px) {
+        width: 36px;
+        height: 36px;
+        background-image: url(${props => props.iconLg});     
+    }
+`;
+
 const Footer = () => (
     <Container>
         <Left>
             <Text>Follow Us</Text>
             <Icons>
-                <a href="https://www.facebook.com/cryptaur.ru"><img src={fb} /></a>
-                <a href="https://twitter.com/cryptaur_ru"><img src={tw} /></a>
-                <a href="https://t.me/cryptaur_chat_RU"><img src={tg} /></a>
+                <SocialLink href="https://www.facebook.com/cryptaur.ru" icon={fb} iconLg={fb_lg} />
+                <SocialLink href="https://twitter.com/cryptaur_ru"  icon={tw} iconLg={tw_lg} />
+                <SocialLink href="https://t.me/cryptaur_chat_RU"  icon={tg} iconLg={tg_lg} />
             </Icons>
         </Left>
         <Right>

@@ -5,6 +5,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { Input } from './Common';
 import userIcon from '../Resources/user.png';
 import arrowRight from '../Resources/arrowRight.png';
+import burger from '../Resources/burger.png';
 
 
 const Container = s.div`
@@ -35,12 +36,14 @@ const Right = s.div`
     margin-right: 40px;
     user-select: none;
     white-space: nowrap;
-    &:last-child {
+    &:last-of-type {
         margin-right: 0;
-        }
+    }
     }
     @media (max-width: 700px) {
+        > *:not(:last-child) {
         display: none;
+        }
     }
 `;
 
@@ -54,6 +57,12 @@ const Left = s.div`
     margin-right: 40px;
     user-select: none;
     }
+    @media (max-width: 700px) { 
+        > *:first-child, input {
+            display: none;
+        }
+    }
+    
 `;
 
 const User = s.img`
@@ -72,6 +81,15 @@ const Wallet = s.p`
     font-size: 12px;
     text-transform: uppercase;
     color: #fff;
+`;
+
+const Burger = s.div`
+    background-image: url(${burger});
+    width: 20px;
+    height: 15px;
+    @media (min-width: 700px) { 
+        display: none;
+    }
 `;
 
 class Header extends React.Component {
@@ -98,6 +116,7 @@ class Header extends React.Component {
                     }
                     <NavLink to="/manual" activeStyle={{ color: '#55b9ff' }} exact>How To Play</NavLink>
                     <NavLink to="http://google.ru">Eng</NavLink>
+                    <Burger />
                 </Right>
             </Container>
         );
