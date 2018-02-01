@@ -25,6 +25,12 @@ const Expander = s.img`
     
 `;
 
+const Head = s.div`
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+`;
+
 export default class ExpandContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -39,12 +45,13 @@ export default class ExpandContainer extends React.Component {
         const { title, bgColor, children } = this.props;
         return (
             <Container bgColor={bgColor}>
-                <Title white>{title}</Title>
-                <Expander
-                    src={expandIcon}
-                    onClick={this.expand}
-                    expanded={this.state.expanded}
-                />
+                <Head onClick={this.expand}>
+                    <Title white>{title}</Title>
+                    <Expander
+                        src={expandIcon}
+                        expanded={this.state.expanded}
+                    />
+                </Head>
                 {this.state.expanded && children}
             </Container>
         );

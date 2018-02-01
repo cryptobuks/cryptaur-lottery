@@ -16,6 +16,7 @@ const MyTicket = ({ numbers, total }) => (
     <TicketContainer
         title="You Have"
         mainTitle="1 Ticket"
+        secondTitle="​"
         total={total}
         numbers={numbers}
         noExpand

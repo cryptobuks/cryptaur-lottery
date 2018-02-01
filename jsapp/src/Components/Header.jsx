@@ -4,8 +4,10 @@ import { observer, inject } from 'mobx-react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { Input } from './Common';
 import userIcon from '../Resources/user.png';
+import userActiveIcon from '../Resources/user_active.png';
 import arrowRight from '../Resources/arrowRight.png';
 import burger from '../Resources/burger.png';
+import MobileModal from '../Containers/MobileModal';
 
 
 const Container = s.div`
@@ -25,6 +27,7 @@ const Container = s.div`
     z-index: 2;
     @media (max-width: 700px) {
         height: 60px;
+        padding: 0 20px;
     }
 `;
 
@@ -75,6 +78,9 @@ const Login = s.img`
     height: 11px;
     right: 22px;
     cursor: pointer;
+    @media (max-width: 700px) { 
+        display: none;
+    }
 `;
 
 const Wallet = s.p`
@@ -92,32 +98,56 @@ const Burger = s.div`
     }
 `;
 
+const Link = ({ to, title }) => (
+    <NavLink to={to} activeStyle={{ color: '#55b9ff' }} exact>{title}</NavLink>
+);
+
 class Header extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            modalOpened: false
+        };
+    }
+
     setWallet = () => {
         this.props.userStore.setWallet(this.wallet.value);
     }
+
+    modalState = opened => this.setState({ modalOpened: opened });
 
     render() {
         const { userStore } = this.props;
         return (
             <Container>
                 <Left>
-                    <NavLink to="/" activeStyle={{ color: '#55b9ff' }} exact>Home</NavLink>
-                    <User src={userIcon} />
+                    <Link to="/" title="Home" />
+                    <User src={userStore.walletId ? userActiveIcon : userIcon} />
                     {userStore.walletId ?
-                        <Wallet>{userStore.walletId}</Wallet> :
-                        <Input placeholder="login with your CPT wallet address" innerRef={e => this.wallet = e} />
+                        <Wallet>{userStore.secureWallet}</Wallet> :
+                        <React.Fragment>
+                            <Input
+                                placeholder="login with your CPT wallet address"
+                                innerRef={e => this.wallet = e}
+                                onKeyPress={e => e.charCode === 13 && this.setWallet()}
+                            />
+                            <Login src={arrowRight} onClick={this.setWallet} />
+                        </React.Fragment>
                     }
-                    <Login src={arrowRight} onClick={this.setWallet} />
                 </Left>
                 <Right>
                     {userStore.walletId &&
-                    <NavLink to="/tickets" activeStyle={{ color: '#55b9ff' }} exact>My Tickets</NavLink>
+                    <Link to="/tickets" title="My Tickets" />
                     }
-                    <NavLink to="/manual" activeStyle={{ color: '#55b9ff' }} exact>How To Play</NavLink>
+                    <Link to="/manual" title="How To Play" />
                     <NavLink to="http://google.ru">Eng</NavLink>
-                    <Burger />
+                    <Burger onClick={() => this.modalState(true)} />
+                    <MobileModal isOpen={this.state.modalOpened} />
                 </Right>
+                <MobileModal
+                    isOpen={this.state.modalOpened}
+                    closeModal={() => this.modalState(false)}
+                />
             </Container>
         );
     }
